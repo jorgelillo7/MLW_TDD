@@ -11,9 +11,13 @@ public class MoveDeckToWasteController {
 		int sizeDeck, sizeWaste;
 		sizeDeck = startGameController.sizeDeck();
 		sizeWaste = startGameController.sizeWaste();
-
-		startGameController.setSizeDeck(sizeDeck - 3);
-		startGameController.setSizeWaste(sizeWaste + 3);
+		if (sizeDeck >= 3) {
+			startGameController.setSizeDeck(sizeDeck - 3);
+			startGameController.setSizeWaste(sizeWaste + 3);
+		} else if (sizeDeck > 0) { // caso quedan 1 o 2 cartas en baraja
+			startGameController.setSizeDeck(0);
+			startGameController.setSizeWaste(sizeWaste + sizeDeck);
+		}
 	}
 
 }

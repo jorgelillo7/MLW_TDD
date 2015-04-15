@@ -18,7 +18,7 @@ public class MoveDeckToWasteControllerTest {
 	}
 
 	@Test
-	public void moveTest() {
+	public void moveDeckSizeMoreOrEqualsToThreeTest() {
 		int sizeDeck, sizeWaste;
 
 		sizeDeck = startGameController.sizeDeck();
@@ -30,5 +30,19 @@ public class MoveDeckToWasteControllerTest {
 			assertEquals(startGameController.sizeWaste(), (sizeWaste + 3));
 		}
 	}
+
+	@Test
+	public void moveDeckSizeLessThanThreeTest() {
+		int sizeDeck, sizeWaste;
+		startGameController.setSizeDeck(2);
+		sizeDeck = startGameController.sizeDeck();
+		sizeWaste = startGameController.sizeWaste();
+		
+		moveDeckToWasteController.move();
+		assertEquals(startGameController.sizeDeck(), 0);
+		assertEquals(startGameController.sizeWaste(), (sizeWaste + sizeDeck));
+	}
+	
+	
 
 }
