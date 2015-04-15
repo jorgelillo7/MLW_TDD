@@ -33,8 +33,13 @@ public class StartGameController {
 	}
 
 	public ArrayList<Stack<Card>> uncoveredCardsStackTableaus() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Stack<Card>> uncoveredCardsStackTableaus = new ArrayList<Stack<Card>>();
+		for (int i = 0; i < TABLEAUS_NUMBER; i++) {
+			Stack<Card> uncoveredCardsStack = new Stack<Card>();
+			uncoveredCardsStack.add(new Card());
+			uncoveredCardsStackTableaus.add(uncoveredCardsStack);
+		}
+		return uncoveredCardsStackTableaus;
 	}
 
 }
