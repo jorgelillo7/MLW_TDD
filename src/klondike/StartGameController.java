@@ -43,4 +43,14 @@ public class StartGameController {
 		return uncoveredCardsStackTableaus;
 	}
 
+	public void setSizeDeck(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setSizeWaste(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
