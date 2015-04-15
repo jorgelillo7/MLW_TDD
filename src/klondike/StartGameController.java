@@ -10,6 +10,8 @@ public class StartGameController {
 	private int sizeDeck;
 	private int sizeWaste;
 
+	/*TODO: Hacer que las cartas sean aleatorias y diferentes*/
+	
 	public StartGameController() {
 		sizeDeck = 24;
 		sizeWaste = 0;
