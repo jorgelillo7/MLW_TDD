@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class MoveCardControllerTest {
+public class MoveDeskToWasteControllerTest {
 
 	@Test
 	public void test() {
