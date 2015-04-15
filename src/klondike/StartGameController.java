@@ -5,6 +5,7 @@ import java.util.Stack;
 
 public class StartGameController {
 	private static final int TABLEAUS_NUMBER = 7;
+	public static final int FOUNDATIONS_NUMBER = 4;
 
 	public int sizeWaste() {
 		// TODO Auto-generated method stub
@@ -13,7 +14,7 @@ public class StartGameController {
 
 	public ArrayList<Integer> sizeFoundations() {
 		ArrayList<Integer> sizeFoundations = new ArrayList<Integer>();
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < FOUNDATIONS_NUMBER; i++) {
 			sizeFoundations.add(0);
 		}
 
