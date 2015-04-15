@@ -30,7 +30,7 @@ public class MoveDeckToWasteControllerTest {
 			assertEquals(startGameController.sizeWaste(), (sizeWaste + 3));
 		}
 	}
-
+ 
 	@Test
 	public void moveDeckSizeLessThanThreeTest() {
 		int sizeDeck, sizeWaste;
