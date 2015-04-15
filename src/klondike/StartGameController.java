@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class StartGameController {
+	private static final int TABLEAUS_NUMBER = 7;
 
 	public int sizeWaste() {
 		// TODO Auto-generated method stub
@@ -15,17 +16,20 @@ public class StartGameController {
 		for (int i = 0; i < 4; i++) {
 			sizeFoundations.add(0);
 		}
-		
+
 		return sizeFoundations;
 	}
 
-	public int sizeDeck() { 
+	public int sizeDeck() {
 		return 24;
 	}
 
 	public ArrayList<Integer> sizeCoveredCardsTableaus() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Integer> sizeTableaus = new ArrayList<Integer>();
+		for (int i = 0; i < TABLEAUS_NUMBER; i++) {
+			sizeTableaus.add(i + 1);
+		}
+		return sizeTableaus;
 	}
 
 	public ArrayList<Stack<Card>> uncoveredCardsStackTableaus() {
