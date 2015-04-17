@@ -1,6 +1,7 @@
 package klondike;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Stack;
 
 public class StartGameController {
@@ -10,8 +11,6 @@ public class StartGameController {
 	private int sizeDeck;
 	private int sizeWaste;
 
-	/*TODO: Hacer que las cartas sean aleatorias y diferentes*/
-	
 	public StartGameController() {
 		sizeDeck = 24;
 		sizeWaste = 0;
@@ -46,9 +45,11 @@ public class StartGameController {
 		ArrayList<Stack<Card>> uncoveredCardsStackTableaus = new ArrayList<Stack<Card>>();
 		for (int i = 0; i < TABLEAUS_NUMBER; i++) {
 			Stack<Card> uncoveredCardsStack = new Stack<Card>();
-			uncoveredCardsStack.add(new Card());
+			Random random = new Random();
+			uncoveredCardsStack.add(new Card(random.nextInt(12), random.nextInt(4)));
+			uncoveredCardsStack.peek().setUncovered(true);
 			uncoveredCardsStackTableaus.add(uncoveredCardsStack);
-		}
+		} 
 		return uncoveredCardsStackTableaus;
 	}
 
