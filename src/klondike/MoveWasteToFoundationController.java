@@ -1,9 +1,14 @@
 package klondike;
 
 public class MoveWasteToFoundationController {
-
+	private StartGameController startGameController;
+	
+	public MoveWasteToFoundationController(StartGameController starGameController){
+		this.startGameController = starGameController;
+	}
+		 
 	public void move(int foundationPositionNumber) {
-		// TODO Auto-generated method stub
+		Card card = startGameController.getFirstCardWaste();
 		
 	}
 

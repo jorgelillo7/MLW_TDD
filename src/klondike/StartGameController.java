@@ -10,14 +10,23 @@ public class StartGameController {
 
 	private int sizeDeck;
 	private int sizeWaste;
+	
+	private ArrayList<Stack<Card>> foundations;
+	private Stack<Card> waste;
 
 	public StartGameController() {
 		sizeDeck = 24;
 		sizeWaste = 0;
+		foundations= new ArrayList<Stack<Card>>(4);
+		for (int i = 0; i <FOUNDATIONS_NUMBER; i++){
+			foundations.add(new Stack<Card>());
+		}
+		
+		waste = new Stack<Card>();
 	}
 
 	public int sizeWaste() {
-		return sizeWaste;
+		return waste.size();
 	}
 
 	public ArrayList<Integer> sizeFoundations() {
@@ -64,18 +73,20 @@ public class StartGameController {
 	}
 
 	public void addCardToWaste(Card card) {
-		// TODO Auto-generated method stub
-		
+		waste.add(card);
 	}
 
 	public void addCardToFundation(int foundationPositionNumber, Card card) {
-		// TODO Auto-generated method stub
+		getFoundation(foundationPositionNumber).add(card);
 		
 	}
 
 	public Stack<Card> getFoundation(int foundationPositionNumber) {
-		// TODO Auto-generated method stub
-		return null;
+		return foundations.get(foundationPositionNumber);
+	}
+
+	public Card getFirstCardWaste() {
+		return waste.peek();
 	}
 
 }
