@@ -16,17 +16,17 @@ public class MoveWasteToFoundationControllerTest {
 	@Before
 	public void before() {
 		startGameController = new StartGameController();
-		moveWasteToFoundationController = new MoveWasteToFoundationController();
+		moveWasteToFoundationController = new MoveWasteToFoundationController(startGameController);
 	}
 	 
 	@Test
 	public void moveTest(){
 		int foundationPositionNumber, foundationSize, wasteSize; 
-		foundationPositionNumber = 1;
-		Random random = new Random();
-		Card card = new Card(random.nextInt(12), random.nextInt(4));
-		startGameController.addCardToWaste(card);
-		startGameController.addCardToFundation(foundationPositionNumber, card);
+		foundationPositionNumber = 1; 
+		Card heartTwo = new Card(2, 1);
+		Card heartOne = new Card(1, 1);
+		startGameController.addCardToWaste(heartTwo);
+		startGameController.addCardToFundation(foundationPositionNumber, heartOne);
 		
 		Stack<Card> foundation = startGameController.getFoundation(foundationPositionNumber);
 		foundationSize = foundation.size();
@@ -34,7 +34,7 @@ public class MoveWasteToFoundationControllerTest {
 		
 		moveWasteToFoundationController.move(foundationPositionNumber);
 		assertEquals(wasteSize - 1, startGameController.sizeWaste());
-		assertEquals(foundationSize + 1, startGameController.getFoundation(foundationPositionNumber));
+		assertEquals(foundationSize + 1, startGameController.getFoundation(foundationPositionNumber).size());
 		
 	}
 

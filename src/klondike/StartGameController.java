@@ -89,4 +89,9 @@ public class StartGameController {
 		return waste.peek();
 	}
 
+	public void removeWasteCard() {
+		waste.pop();
+		
+	}
+
 }

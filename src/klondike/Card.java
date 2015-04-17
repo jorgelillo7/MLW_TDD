@@ -35,8 +35,24 @@ public class Card {
 			newSuit = Suit.CLUBS;
 			break;
 		}
-		
+
 		return newSuit;
+	}
+
+	public int getValue() {
+		return value;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
+	}
+
+	public Suit getSuit() {
+		return suit;
+	}
+
+	public void setSuit(Suit suit) {
+		this.suit = suit;
 	}
 
 }
