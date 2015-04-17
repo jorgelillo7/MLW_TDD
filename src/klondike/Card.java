@@ -4,13 +4,13 @@ public class Card {
 
 	private boolean uncovered;
 	private int value;
-	private int suit;
-	
-	public Card (int value, int suit){
+	private Suit suit;
+
+	public Card(int value, int suit) {
 		this.value = value;
-		this.suit = suit;
+		this.suit = getSuit(suit);
 	}
-	
+
 	public boolean isUncovered() {
 		return uncovered;
 	}
@@ -18,7 +18,25 @@ public class Card {
 	public void setUncovered(boolean uncovered) {
 		this.uncovered = uncovered;
 	}
-	
-	
+
+	private Suit getSuit(int suitNum) {
+		Suit newSuit = null;
+		switch (suitNum) {
+		case 0:
+			newSuit = Suit.SPADES;
+			break;
+		case 1:
+			newSuit = Suit.HEARTS;
+			break;
+		case 2:
+			newSuit = Suit.DIAMONDS;
+			break;
+		case 3:
+			newSuit = Suit.CLUBS;
+			break;
+		}
+		
+		return newSuit;
+	}
 
 }
