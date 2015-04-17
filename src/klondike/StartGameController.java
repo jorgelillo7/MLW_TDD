@@ -63,4 +63,19 @@ public class StartGameController {
 
 	}
 
+	public void addCardToWaste(Card card) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addCardToFundation(int foundationPositionNumber, Card card) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Stack<Card> getFoundation(int foundationPositionNumber) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
