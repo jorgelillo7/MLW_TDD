@@ -1,4 +1,7 @@
-package klondike;
+package models;
+
+import utils.Color;
+import utils.Suit;
 
 public class Card {
 

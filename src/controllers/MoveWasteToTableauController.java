@@ -1,6 +1,8 @@
-package klondike;
+package controllers;
 
 import java.util.Stack;
+
+import models.Card;
 
 public class MoveWasteToTableauController {
 	private StartGameController startGameController;

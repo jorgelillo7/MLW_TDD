@@ -1,8 +1,10 @@
-package klondike;
+package controllers;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Stack;
+
+import models.Card;
 
 public class StartGameController {
 	private static final int TABLEAUS_NUMBER = 7;

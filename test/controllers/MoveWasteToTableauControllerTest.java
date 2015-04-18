@@ -1,9 +1,13 @@
-package klondike;
+package controllers;
 
 import static org.junit.Assert.*;
+import models.Card;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import controllers.MoveWasteToTableauController;
+import controllers.StartGameController;
 
 public class MoveWasteToTableauControllerTest {
 

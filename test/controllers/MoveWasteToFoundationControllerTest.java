@@ -1,11 +1,16 @@
-package klondike;
+package controllers;
 
 import static org.junit.Assert.*;
 
 import java.util.Stack;
 
+import models.Card;
+
 import org.junit.Before;
 import org.junit.Test;
+
+import controllers.MoveWasteToFoundationController;
+import controllers.StartGameController;
 
 public class MoveWasteToFoundationControllerTest {
 
