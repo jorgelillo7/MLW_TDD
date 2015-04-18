@@ -110,5 +110,11 @@ public class StartGameController {
 		this.getTableau(tableauNumber).pop();
 		
 	}
+	
+	public boolean checkWin(){
+		
+		return true;
+		
+	}
 
 }

@@ -27,7 +27,8 @@ public class StartGameControllerTest {
 
 	@Test
 	public void sizeFoundationsTest() {
-		ArrayList<Integer> sizeFoundations = startGameController.sizeFoundations();
+		ArrayList<Integer> sizeFoundations = startGameController
+				.sizeFoundations();
 		assertEquals(4, sizeFoundations.size());
 		for (int sizeFoundation : sizeFoundations) {
 			assertEquals(0, sizeFoundation);
@@ -41,22 +42,28 @@ public class StartGameControllerTest {
 
 	@Test
 	public void sizeTableausTest() {
-		ArrayList<Integer> sizeTableaus = startGameController.sizeCoveredCardsTableaus();
-		ArrayList<Stack<Card>> uncoveredCardsStackTableaus = startGameController.uncoveredCardsStackTableaus();
+		ArrayList<Integer> sizeTableaus = startGameController
+				.sizeCoveredCardsTableaus();
+		ArrayList<Stack<Card>> uncoveredCardsStackTableaus = startGameController
+				.uncoveredCardsStackTableaus();
 
 		assertEquals(7, sizeTableaus.size());
 		assertEquals(7, uncoveredCardsStackTableaus.size());
-		
+
 		for (int i = 0; i < sizeTableaus.size(); i++) {
 			assertEquals(new Integer(i + 1), sizeTableaus.get(i));
 		}
-		
+
 		for (Stack<Card> uncoveredCardsStack : uncoveredCardsStackTableaus) {
 			assertEquals(1, uncoveredCardsStack.size());
-			assertTrue(uncoveredCardsStack.peek().isUncovered()); //cima
+			assertTrue(uncoveredCardsStack.peek().isUncovered()); // cima
 		}
-		
-		
+
+	}
+
+	@Test
+	public void checkWintest() {
+		assertTrue(startGameController.checkWin());
 	}
 
 }
