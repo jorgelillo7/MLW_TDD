@@ -19,14 +19,23 @@ public class MoveTableauToTableauController {
 				.getTableau(tableauNumberDestination);
 
 		Card cardToMove = tableauOrigin.peek();
-		Card lastCardOfTableauDestination = tableauDestination.peek();
+		Card lastCardOfTableauDestination = null;
 
-		if ((cardToMove.getColor() != lastCardOfTableauDestination.getColor() && cardToMove
-				.getValue() < lastCardOfTableauDestination.getValue())
-				|| (tableauDestination.size() == 0 && cardToMove.getValue() == 12)) {
-			startGameController.addCardToTableau(tableauNumberDestination,
-					cardToMove);
-			startGameController.removeTableauCard(tableauNumberOrigin);
+		if (tableauDestination.size() > 0) {
+			lastCardOfTableauDestination = tableauDestination.peek();
+			if ((cardToMove.getColor() != lastCardOfTableauDestination
+					.getColor() && cardToMove.getValue() < lastCardOfTableauDestination
+					.getValue())) {
+				startGameController.addCardToTableau(tableauNumberDestination,
+						cardToMove);
+				startGameController.removeTableauCard(tableauNumberOrigin);
+			}
+		} else {
+			if (tableauDestination.size() == 0 && cardToMove.getValue() == 12) {
+				startGameController.addCardToTableau(tableauNumberDestination,
+						cardToMove);
+				startGameController.removeTableauCard(tableauNumberOrigin);
+			}
 		}
 
 	}
