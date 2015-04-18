@@ -5,16 +5,16 @@ public class Card {
 	private boolean uncovered;
 	private int value;
 	private Suit suit;
-	private String color;
+	private Color color;
 
 
 	public Card(int value, int suit) {
 		this.value = value;
 		this.suit = getSuit(suit);
 		if((this.suit == Suit.SPADES) || (this.suit == Suit.CLUBS)){
-			this.color = "Black";
+			this.color = Color.BLACK;
 		} else if((this.suit == Suit.HEARTS) || (this.suit == Suit.DIAMONDS)){
-			this.color = "Red";
+			this.color = Color.RED;
 		} 
 						
 	}
@@ -64,11 +64,11 @@ public class Card {
 	}
 	
 
-	public String getColor() {
+	public Color getColor() {
 		return color;
 	}
 
-	public void setColor(String color) {
+	public void setColor(Color color) {
 		this.color = color;
 	}
 
