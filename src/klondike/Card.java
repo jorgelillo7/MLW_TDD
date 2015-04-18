@@ -5,10 +5,18 @@ public class Card {
 	private boolean uncovered;
 	private int value;
 	private Suit suit;
+	private String color;
+
 
 	public Card(int value, int suit) {
 		this.value = value;
 		this.suit = getSuit(suit);
+		if((this.suit == Suit.SPADES) || (this.suit == Suit.CLUBS)){
+			this.color = "Black";
+		} else if((this.suit == Suit.HEARTS) || (this.suit == Suit.DIAMONDS)){
+			this.color = "Red";
+		} 
+						
 	}
 
 	public boolean isUncovered() {
@@ -53,6 +61,15 @@ public class Card {
 
 	public void setSuit(Suit suit) {
 		this.suit = suit;
+	}
+	
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 }

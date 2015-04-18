@@ -2,7 +2,6 @@ package klondike;
 
 import static org.junit.Assert.*;
 
-import java.util.Random;
 import java.util.Stack;
 
 import org.junit.Before;
