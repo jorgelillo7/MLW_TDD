@@ -33,7 +33,7 @@ public class MoveTableauToFoundationControllerTest {
 		startGameController.addCardToTableau(TABLEAU_NUMBER, new Card(4,
 				1));
        
-		moveTableauToFoundationController.move(FOUNDATION_POSITION_NUMBER);
+		moveTableauToFoundationController.move(FOUNDATION_POSITION_NUMBER, TABLEAU_NUMBER);
         assertEquals(0, startGameController.getTableau(TABLEAU_NUMBER).size());
         assertEquals(4, startGameController.getFoundation(FOUNDATION_POSITION_NUMBER).size());
        
@@ -41,7 +41,20 @@ public class MoveTableauToFoundationControllerTest {
 	
 	@Test
 	public void moveBadMovementTest(){
-		 
+		Card heartOne = new Card(1, 1); 
+		Card heartTwo = new Card(2, 1); 
+		Card heartThree = new Card(3, 1); 
+		startGameController.addCardToFundation(FOUNDATION_POSITION_NUMBER, heartOne);
+		startGameController.addCardToFundation(FOUNDATION_POSITION_NUMBER, heartTwo);
+		startGameController.addCardToFundation(FOUNDATION_POSITION_NUMBER, heartThree);
+		
+		startGameController.addCardToTableau(TABLEAU_NUMBER, new Card(5,
+				2));
+       
+		moveTableauToFoundationController.move(FOUNDATION_POSITION_NUMBER, TABLEAU_NUMBER);
+        assertEquals(1, startGameController.getTableau(TABLEAU_NUMBER).size());
+        assertEquals(3, startGameController.getFoundation(FOUNDATION_POSITION_NUMBER).size());
+       
 		
 	}
 

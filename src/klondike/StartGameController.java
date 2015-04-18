@@ -98,8 +98,15 @@ public class StartGameController {
 		return tableaus.get(tableauNumber);
 	}
 	
+	
+	
 	public void addCardToTableau(int tableau, Card card) {
 		tableaus.get(tableau).add(card);
+	}
+
+	public void removeTableauCard(int tableauNumber) {
+		this.getTableau(tableauNumber).pop();
+		
 	}
 
 }
