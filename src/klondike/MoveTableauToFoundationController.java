@@ -7,4 +7,9 @@ public class MoveTableauToFoundationController {
 			StartGameController startGameController) {
 		this.startGameController = startGameController;
 	}
+
+	public void move(int foundationPositionNumber) {
+		// TODO Auto-generated method stub
+		
+	}
 }

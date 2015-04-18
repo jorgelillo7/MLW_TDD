@@ -12,6 +12,9 @@ public class MoveTableauToFoundationControllerTest {
 	private MoveTableauToFoundationController moveTableauToFoundationController;
 	private StartGameController startGameController; 
 
+	private final static int FOUNDATION_POSITION_NUMBER = 3;
+	private static final int TABLEAU_NUMBER = 1;
+
 	@Before
 	public void before() {
 		startGameController = new StartGameController();
@@ -19,8 +22,21 @@ public class MoveTableauToFoundationControllerTest {
 	}
 	 
 	@Test
-	public void moveTest(){
-		 
+	public void moveTest(){ 
+		Card heartOne = new Card(1, 1); 
+		Card heartTwo = new Card(2, 1); 
+		Card heartThree = new Card(3, 1); 
+		startGameController.addCardToFundation(FOUNDATION_POSITION_NUMBER, heartOne);
+		startGameController.addCardToFundation(FOUNDATION_POSITION_NUMBER, heartTwo);
+		startGameController.addCardToFundation(FOUNDATION_POSITION_NUMBER, heartThree);
+		
+		startGameController.addCardToTableau(TABLEAU_NUMBER, new Card(4,
+				1));
+       
+		moveTableauToFoundationController.move(FOUNDATION_POSITION_NUMBER);
+        assertEquals(0, startGameController.getTableau(TABLEAU_NUMBER).size());
+        assertEquals(4, startGameController.getFoundation(FOUNDATION_POSITION_NUMBER).size());
+       
 	}
 	
 	@Test
