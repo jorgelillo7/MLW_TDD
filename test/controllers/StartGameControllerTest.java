@@ -10,6 +10,7 @@ import models.Card;
 import org.junit.Before;
 import org.junit.Test;
 
+import utils.Suit;
 import controllers.StartGameController;
 
 public class StartGameControllerTest {
@@ -63,6 +64,11 @@ public class StartGameControllerTest {
 
 	@Test
 	public void checkWintest() {
+		for(int i = 0; i< 4; i++){ 
+			for(int j= 1; j<13; j++){ 
+					startGameController.addCardToFundation(i, new Card(j, i));
+			}
+		}
 		assertTrue(startGameController.checkWin());
 	}
 
