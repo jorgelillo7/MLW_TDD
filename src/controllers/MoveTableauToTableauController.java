@@ -26,18 +26,20 @@ public class MoveTableauToTableauController {
 			if ((cardToMove.getColor() != lastCardOfTableauDestination
 					.getColor() && cardToMove.getValue() < lastCardOfTableauDestination
 					.getValue())) {
-				startGameController.addCardToTableau(tableauNumberDestination,
-						cardToMove);
-				startGameController.removeTableauCard(tableauNumberOrigin);
+				doMovementFromTableauToTableau(tableauNumberOrigin,tableauNumberDestination,cardToMove);
 			}
 		} else {
 			if (tableauDestination.size() == 0 && cardToMove.getValue() == 12) {
-				startGameController.addCardToTableau(tableauNumberDestination,
-						cardToMove);
-				startGameController.removeTableauCard(tableauNumberOrigin);
+				doMovementFromTableauToTableau(tableauNumberOrigin,tableauNumberDestination,cardToMove);
 			}
 		}
 
+	}
+	
+	private void doMovementFromTableauToTableau(int origin, int destination, Card cardToMove){
+		startGameController.addCardToTableau(destination,
+				cardToMove);
+		startGameController.removeTableauCard(origin);
 	}
 
 }
