@@ -3,7 +3,7 @@ package models;
 import utils.Color;
 import utils.Suit;
 
-abstract class Card {
+public abstract class Card {
 
 	protected boolean uncovered;
 	protected int value;

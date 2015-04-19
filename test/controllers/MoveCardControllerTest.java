@@ -6,6 +6,7 @@ import static org.junit.Assert.assertFalse;
 import java.util.Stack;
 
 import models.Card;
+import models.CardFactory;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -67,9 +68,9 @@ public class MoveCardControllerTest {
 
 	@Test
 	public void moveTableauToFoundationTest() {
-		Card heartOne = new Card(1, 1);
-		Card heartTwo = new Card(2, 1);
-		Card heartThree = new Card(3, 1);
+		Card heartOne = CardFactory.getCard(1,1);
+		Card heartTwo = CardFactory.getCard(2, 1);
+		Card heartThree = CardFactory.getCard(3, 1);
 		startGameController.addCardToFundation(FOUNDATION_POSITION_NUMBER,
 				heartOne);
 		startGameController.addCardToFundation(FOUNDATION_POSITION_NUMBER,
@@ -77,7 +78,7 @@ public class MoveCardControllerTest {
 		startGameController.addCardToFundation(FOUNDATION_POSITION_NUMBER,
 				heartThree);
 
-		startGameController.addCardToTableau(TABLEAU_NUMBER, new Card(4, 1));
+		startGameController.addCardToTableau(TABLEAU_NUMBER, CardFactory.getCard(4, 1));
 
 		moveCardController.moveTableauToFoundation(FOUNDATION_POSITION_NUMBER,
 				TABLEAU_NUMBER);
@@ -89,9 +90,9 @@ public class MoveCardControllerTest {
 
 	@Test
 	public void moveTableauToFoundationBadMovementTest() {
-		Card heartOne = new Card(1, 1);
-		Card heartTwo = new Card(2, 1);
-		Card heartThree = new Card(3, 1);
+		Card heartOne = CardFactory.getCard(1, 1);
+		Card heartTwo = CardFactory.getCard(2, 1);
+		Card heartThree = CardFactory.getCard(3, 1);
 		startGameController.addCardToFundation(FOUNDATION_POSITION_NUMBER,
 				heartOne);
 		startGameController.addCardToFundation(FOUNDATION_POSITION_NUMBER,
@@ -99,7 +100,7 @@ public class MoveCardControllerTest {
 		startGameController.addCardToFundation(FOUNDATION_POSITION_NUMBER,
 				heartThree);
 
-		startGameController.addCardToTableau(TABLEAU_NUMBER, new Card(5, 2));
+		startGameController.addCardToTableau(TABLEAU_NUMBER, CardFactory.getCard(5, 2));
 
 		moveCardController.moveTableauToFoundation(FOUNDATION_POSITION_NUMBER,
 				TABLEAU_NUMBER);
@@ -112,10 +113,10 @@ public class MoveCardControllerTest {
 	@Test
 	public void moveTableauToTableauTest() {
 		// opposite color and lower
-		startGameController.addCardToTableau(TABLEAU_NUMBER_ORIGIN, new Card(4,
+		startGameController.addCardToTableau(TABLEAU_NUMBER_ORIGIN, CardFactory.getCard(4,
 				1));
 		startGameController.addCardToTableau(TABLEAU_NUMBER_DESTINATION,
-				new Card(5, 3));
+				CardFactory.getCard(5, 3));
 
 		moveCardController.moveTableauToTableau(TABLEAU_NUMBER_ORIGIN,
 				TABLEAU_NUMBER_DESTINATION);
@@ -130,7 +131,7 @@ public class MoveCardControllerTest {
 	public void moveTableauToTableauWithDestinationEmptyTest() {
 
 		// destination empty and King Card
-		startGameController.addCardToTableau(TABLEAU_NUMBER_ORIGIN, new Card(
+		startGameController.addCardToTableau(TABLEAU_NUMBER_ORIGIN, CardFactory.getCard(
 				12, 1));
 		moveCardController.moveTableauToTableau(TABLEAU_NUMBER_ORIGIN,
 				TABLEAU_NUMBER_DESTINATION);
@@ -143,10 +144,10 @@ public class MoveCardControllerTest {
 
 	@Test
 	public void moveTableauToTableauBadMovementTest() {
-		startGameController.addCardToTableau(TABLEAU_NUMBER_ORIGIN, new Card(4,
+		startGameController.addCardToTableau(TABLEAU_NUMBER_ORIGIN, CardFactory.getCard(4,
 				1));
 		startGameController.addCardToTableau(TABLEAU_NUMBER_DESTINATION,
-				new Card(5, 1));
+				CardFactory.getCard(5, 1));
 
 		moveCardController.moveTableauToTableau(TABLEAU_NUMBER_ORIGIN,
 				TABLEAU_NUMBER_DESTINATION);
@@ -160,8 +161,8 @@ public class MoveCardControllerTest {
 	@Test
 	public void moveWasteToFoundationTest() {
 		int foundationSize, wasteSize;
-		Card heartTwo = new Card(2, 1);
-		Card heartOne = new Card(1, 1);
+		Card heartTwo = CardFactory.getCard(2, 1);
+		Card heartOne = CardFactory.getCard(1, 1);
 		startGameController.addCardToWaste(heartTwo);
 		startGameController.addCardToFundation(FOUNDATION_POSITION_NUMBER,
 				heartOne);
@@ -181,8 +182,8 @@ public class MoveCardControllerTest {
 	@Test
 	public void moveWasteToFoundationBadMovementTest() {
 		int foundationSize, wasteSize;
-		Card spadesSix = new Card(6, 0);
-		Card heartOne = new Card(1, 1);
+		Card spadesSix = CardFactory.getCard(6, 0);
+		Card heartOne = CardFactory.getCard(1, 1);
 		startGameController.addCardToWaste(spadesSix);
 		startGameController.addCardToFundation(FOUNDATION_POSITION_NUMBER,
 				heartOne);
@@ -202,8 +203,8 @@ public class MoveCardControllerTest {
 
 	@Test
 	public void moveWasteToTableauTest() {
-		startGameController.addCardToWaste(new Card(11, 2));
-		startGameController.addCardToTableau(TABLEAU_NUMBER, new Card(12, 3));
+		startGameController.addCardToWaste(CardFactory.getCard(11, 2));
+		startGameController.addCardToTableau(TABLEAU_NUMBER, CardFactory.getCard(12, 3));
 		moveCardController.moveWasteToTableau(TABLEAU_NUMBER);
 		assertEquals(2, startGameController.getTableau(TABLEAU_NUMBER).size());
 		assertEquals(0, startGameController.sizeWaste());
@@ -213,8 +214,8 @@ public class MoveCardControllerTest {
 	@Test
 	public void moveWasteToTableauBadMovementTest() {
 		boolean checkMovementStatus;
-		startGameController.addCardToWaste(new Card(11, 2));
-		startGameController.addCardToTableau(TABLEAU_NUMBER, new Card(5, 3));
+		startGameController.addCardToWaste(CardFactory.getCard(11, 2));
+		startGameController.addCardToTableau(TABLEAU_NUMBER, CardFactory.getCard(5, 3));
 		checkMovementStatus = moveCardController
 				.moveWasteToTableau(TABLEAU_NUMBER);
 		assertFalse(checkMovementStatus);

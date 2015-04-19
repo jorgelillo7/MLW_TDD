@@ -6,6 +6,7 @@ import java.util.Stack;
 
 import utils.Suit;
 import models.Card;
+import models.CardFactory;
 
 public class StartGameController {
 	private static final int TABLEAUS_NUMBER = 7;
@@ -52,8 +53,8 @@ public class StartGameController {
 	}
 
 	private Card createRandomCard() {
-		Random rn = new Random();
-        return new Card(rn.nextInt(12), rn.nextInt(4));
+		Random random = new Random();
+        return  CardFactory.getCard(random.nextInt(12), random.nextInt(4));
 	}
 
 	public int sizeWaste() {

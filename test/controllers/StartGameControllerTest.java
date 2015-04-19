@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 import models.Card;
+import models.CardFactory;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -66,7 +67,7 @@ public class StartGameControllerTest {
 	public void checkWintest() {
 		for(int i = 0; i< 4; i++){ 
 			for(int j= 1; j<13; j++){ 
-					startGameController.addCardToFundation(i, new Card(j, i));
+					startGameController.addCardToFundation(i, CardFactory.getCard(j, i));
 			}
 		}
 		assertTrue(startGameController.checkWin());

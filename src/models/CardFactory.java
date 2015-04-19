@@ -1,6 +1,5 @@
 package models;
 
-import utils.Color;
 import utils.Suit;
 
 public class CardFactory {
@@ -33,5 +32,6 @@ public class CardFactory {
             return new DiamondsCard(value);
         }
         return null;
+    }
 
 }
