@@ -8,10 +8,10 @@ import models.Card;
 public class MoveCardController {
 	private StartGameController startGameController;
 
-	public MoveCardController(StartGameController startGameController) { 
+	public MoveCardController(StartGameController startGameController) {
 		this.startGameController = startGameController;
 	}
-	
+
 	public void moveDeckToWaste() {
 		int sizeDeck;
 		Card card;
@@ -33,8 +33,9 @@ public class MoveCardController {
 			}
 		}
 	}
-	
-	public void moveTableauToFoundation(int foundationPositionNumber, int tableauNumber) {
+
+	public void moveTableauToFoundation(int foundationPositionNumber,
+			int tableauNumber) {
 		Stack<Card> tableau = startGameController.getTableau(tableauNumber);
 		Stack<Card> foundation = startGameController
 				.getFoundation(foundationPositionNumber);
@@ -42,17 +43,28 @@ public class MoveCardController {
 		Card cardToMoveFromTablaeu = tableau.peek();
 		Card lastCardFoundation = foundation.peek();
 
-		if (cardToMoveFromTablaeu.getSuit() == lastCardFoundation.getSuit()
-				&& (cardToMoveFromTablaeu.getValue() == 1 && foundation.size() == 0)
-				|| cardToMoveFromTablaeu.getValue()
-						- lastCardFoundation.getValue() == 1) {
-				startGameController.removeTableauCard(tableauNumber);
-				startGameController.addCardToFundation(foundationPositionNumber, cardToMoveFromTablaeu);
+		if (foundation.size() > 0) {
+			if (cardToMoveFromTablaeu.getSuit() == lastCardFoundation.getSuit()
+					&& cardToMoveFromTablaeu.getValue()
+							- lastCardFoundation.getValue() == 1) {
+				doMovementFromTableauToFoundation(tableauNumber,foundationPositionNumber,cardToMoveFromTablaeu);
+			}
+		} else {
+			if (foundation.size() == 0 && cardToMoveFromTablaeu.getValue() == 1) {
+				doMovementFromTableauToFoundation(tableauNumber,foundationPositionNumber,cardToMoveFromTablaeu);
+			}
 		}
 
 	}
 	
-	public void moveTableauToTableau(int tableauNumberOrigin, int tableauNumberDestination) {
+	private void doMovementFromTableauToFoundation(int tableauNumber, int foundationPositionNumber, Card cardToMoveFromTablaeu){
+		startGameController.removeTableauCard(tableauNumber);
+		startGameController.addCardToFundation(
+				foundationPositionNumber, cardToMoveFromTablaeu);
+	}
+
+	public void moveTableauToTableau(int tableauNumberOrigin,
+			int tableauNumberDestination) {
 		Stack<Card> tableauOrigin = startGameController
 				.getTableau(tableauNumberOrigin);
 		Stack<Card> tableauDestination = startGameController
@@ -66,64 +78,73 @@ public class MoveCardController {
 			if ((cardToMove.getColor() != lastCardOfTableauDestination
 					.getColor() && cardToMove.getValue() < lastCardOfTableauDestination
 					.getValue())) {
-				doMovementFromTableauToTableau(tableauNumberOrigin,tableauNumberDestination,cardToMove);
+				doMovementFromTableauToTableau(tableauNumberOrigin,
+						tableauNumberDestination, cardToMove);
 			}
 		} else {
 			if (tableauDestination.size() == 0 && cardToMove.getValue() == 12) {
-				doMovementFromTableauToTableau(tableauNumberOrigin,tableauNumberDestination,cardToMove);
+				doMovementFromTableauToTableau(tableauNumberOrigin,
+						tableauNumberDestination, cardToMove);
 			}
 		}
 
 	}
-	
-	private void doMovementFromTableauToTableau(int origin, int destination, Card cardToMove){
-		startGameController.addCardToTableau(destination,
-				cardToMove);
+
+	private void doMovementFromTableauToTableau(int origin, int destination,
+			Card cardToMove) {
+		startGameController.addCardToTableau(destination, cardToMove);
 		startGameController.removeTableauCard(origin);
 	}
-	
-	
+
 	public boolean moveWasteToFoundation(int foundationPositionNumber) {
 		Card wasteCard, foundationLastCard;
-	    wasteCard = startGameController.getFirstCardWaste();
-		Stack<Card> foundation = startGameController.getFoundation(foundationPositionNumber);
-		if(foundation.size() > 0){
+		wasteCard = startGameController.getFirstCardWaste();
+		Stack<Card> foundation = startGameController
+				.getFoundation(foundationPositionNumber);
+		if (foundation.size() > 0) {
 			foundationLastCard = foundation.peek();
-			if((wasteCard.getValue() == foundationLastCard.getValue()+1) && (wasteCard.getSuit() == foundationLastCard.getSuit())){
-				startGameController.addCardToFundation(foundationPositionNumber, wasteCard);
+			if ((wasteCard.getValue() == foundationLastCard.getValue() + 1)
+					&& (wasteCard.getSuit() == foundationLastCard.getSuit())) {
+				startGameController.addCardToFundation(
+						foundationPositionNumber, wasteCard);
 				startGameController.removeWasteCard();
 				return true;
 			}
-			
-		} else if (wasteCard.getValue() == 1){  //empty foundation
-			startGameController.addCardToFundation(foundationPositionNumber, wasteCard);
-			startGameController.removeWasteCard();
+
+		} else if (wasteCard.getValue() == 1) { // empty foundation
+			doMovementFromWasteToFoundation(foundationPositionNumber,wasteCard);
 			return true;
 		}
 		return false;
-		
+
 	}
 	
+	private void doMovementFromWasteToFoundation(int foundationPositionNumber, Card wasteCard){
+		startGameController.addCardToFundation(
+				foundationPositionNumber, wasteCard);
+		startGameController.removeWasteCard();
+	}
+
 	public boolean moveWasteToTableau(int tableauNumber) {
 		Stack<Card> tableau = startGameController.getTableau(tableauNumber);
 		Card cardToMove = startGameController.getFirstCardWaste();
-		if( (tableau.size() == 0) && (cardToMove.getValue() == 12)){
-			startGameController.addCardToTableau(tableauNumber, cardToMove);
-			startGameController.removeWasteCard();
+		if ((tableau.size() == 0) && (cardToMove.getValue() == 12)) {
+			doMovementFromWasteToTableau(tableauNumber,cardToMove);
 			return true;
-		}
-		else if(tableau.size() > 0){
+		} else if (tableau.size() > 0) {
 			Card lastCard = tableau.peek();
-			if((lastCard.getValue()==(cardToMove.getValue()+1))&&(lastCard.getColor()!=cardToMove.getColor())){
-				startGameController.addCardToTableau(tableauNumber, cardToMove);
-				startGameController.removeWasteCard();
+			if ((lastCard.getValue() == (cardToMove.getValue() + 1))
+					&& (lastCard.getColor() != cardToMove.getColor())) {
+				doMovementFromWasteToTableau(tableauNumber,cardToMove);
 				return true;
 			}
 		}
 		return false;
 	}
-	  
 	
-	
-	
+	private void doMovementFromWasteToTableau(int tableauNumber, Card cardToMove){
+		startGameController.addCardToTableau(tableauNumber, cardToMove);
+		startGameController.removeWasteCard();
+	}
+
 }
