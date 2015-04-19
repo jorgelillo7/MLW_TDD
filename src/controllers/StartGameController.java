@@ -43,8 +43,17 @@ public class StartGameController {
 	private void createTableaus() {
 		tableaus = new ArrayList<Stack<Card>>(TABLEAUS_NUMBER);
 		for (int i = 0; i < TABLEAUS_NUMBER; i++) {
+			Stack<Card> tableau = new Stack<Card>();
+			 for (int j = 0; j < i + 1; j++) {
+	                tableau.add(this.createRandomCard());
+	         }
 			tableaus.add(new Stack<Card>());
 		}
+	}
+
+	private Card createRandomCard() {
+		Random rn = new Random();
+        return new Card(rn.nextInt(12), rn.nextInt(4));
 	}
 
 	public int sizeWaste() {
@@ -75,10 +84,8 @@ public class StartGameController {
 	public ArrayList<Stack<Card>> uncoveredCardsStackTableaus() {
 		ArrayList<Stack<Card>> uncoveredCardsStackTableaus = new ArrayList<Stack<Card>>();
 		for (int i = 0; i < TABLEAUS_NUMBER; i++) {
-			Stack<Card> uncoveredCardsStack = new Stack<Card>();
-			Random random = new Random();
-			uncoveredCardsStack.add(new Card(random.nextInt(12), random
-					.nextInt(4)));
+			Stack<Card> uncoveredCardsStack = new Stack<Card>(); 
+			uncoveredCardsStack.add(this.createRandomCard());
 			uncoveredCardsStack.peek().setUncovered(true);
 			uncoveredCardsStackTableaus.add(uncoveredCardsStack);
 		}
