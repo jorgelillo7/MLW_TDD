@@ -14,12 +14,7 @@ public class Card {
 	public Card(int value, int suit) {
 		this.value = value;
 		this.suit = getSuit(suit);
-		if((this.suit == Suit.SPADES) || (this.suit == Suit.CLUBS)){
-			this.color = Color.BLACK;
-		} else if((this.suit == Suit.HEARTS) || (this.suit == Suit.DIAMONDS)){
-			this.color = Color.RED;
-		} 
-						
+		this.color = getColor(this.suit);
 	}
 
 	public boolean isUncovered() {
@@ -28,6 +23,21 @@ public class Card {
 
 	public void setUncovered(boolean uncovered) {
 		this.uncovered = uncovered;
+	}
+	
+	private Color getColor(Suit suit) {
+	    
+	    switch (suit) {
+            case SPADES:
+            case CLUBS:
+                return Color.BLACK;
+            case HEARTS:
+            case DIAMONDS:
+                return Color.RED;
+    }
+
+    return null;
+	    
 	}
 
 	private Suit getSuit(int suitNum) {
