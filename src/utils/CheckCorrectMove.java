@@ -35,4 +35,19 @@ public class CheckCorrectMove {
 		return false;
 	}
 
+	public static boolean checkMoveWasteToFoundation(Card wasteCard,
+			Card foundationLastCard) {
+		if (foundationLastCard != null) {
+			if ((wasteCard.getValue() == foundationLastCard.getValue() + 1)
+					&& (wasteCard.getSuit() == foundationLastCard.getSuit())) {
+				return true;
+
+			}
+		} else if (wasteCard.getValue() == 1) { // empty foundation
+			return true;
+
+		}
+		return false;
+	}
+
 }

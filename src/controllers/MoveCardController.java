@@ -89,27 +89,19 @@ public class MoveCardController {
 		startGameController.removeTableauCard(origin);
 	}
 
-	public boolean moveWasteToFoundation(int foundationPositionNumber) {
-		Card wasteCard, foundationLastCard;
+	public void moveWasteToFoundation(int foundationPositionNumber) {
+		Card wasteCard, foundationLastCard = null;
 		wasteCard = startGameController.getFirstCardWaste();
 		Stack<Card> foundation = startGameController
 				.getFoundation(foundationPositionNumber);
 		if (foundation.size() > 0) {
 			foundationLastCard = foundation.peek();
-			if ((wasteCard.getValue() == foundationLastCard.getValue() + 1)
-					&& (wasteCard.getSuit() == foundationLastCard.getSuit())) {
-				startGameController.addCardToFundation(
-						foundationPositionNumber, wasteCard);
-				startGameController.removeWasteCard();
-				return true;
-			}
-
-		} else if (wasteCard.getValue() == 1) { // empty foundation
-			doMovementFromWasteToFoundation(foundationPositionNumber, wasteCard);
-			return true;
 		}
-		return false;
-
+		
+		if (CheckCorrectMove.checkMoveWasteToFoundation(wasteCard,
+				foundationLastCard)) {
+			doMovementFromWasteToFoundation(foundationPositionNumber, wasteCard);
+		}
 	}
 
 	private void doMovementFromWasteToFoundation(int foundationPositionNumber,
