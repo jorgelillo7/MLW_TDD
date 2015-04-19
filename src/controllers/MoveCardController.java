@@ -3,6 +3,7 @@ package controllers;
 import java.util.Random;
 import java.util.Stack;
 
+import utils.CheckCorrectMove;
 import models.Card;
 
 public class MoveCardController {
@@ -43,18 +44,9 @@ public class MoveCardController {
 		Card cardToMoveFromTablaeu = tableau.peek();
 		Card lastCardFoundation = foundation.peek();
 
-		if (foundation.size() > 0) {
-			if (cardToMoveFromTablaeu.getSuit() == lastCardFoundation.getSuit()
-					&& cardToMoveFromTablaeu.getValue()
-							- lastCardFoundation.getValue() == 1) {
-				doMovementFromTableauToFoundation(tableauNumber,foundationPositionNumber,cardToMoveFromTablaeu);
-			}
-		} else {
-			if (foundation.size() == 0 && cardToMoveFromTablaeu.getValue() == 1) {
-				doMovementFromTableauToFoundation(tableauNumber,foundationPositionNumber,cardToMoveFromTablaeu);
-			}
+		if(CheckCorrectMove.checkMoveTableauToFoundation(cardToMoveFromTablaeu,lastCardFoundation)){
+			doMovementFromTableauToFoundation(tableauNumber,foundationPositionNumber,cardToMoveFromTablaeu);
 		}
-
 	}
 	
 	private void doMovementFromTableauToFoundation(int tableauNumber, int foundationPositionNumber, Card cardToMoveFromTablaeu){
