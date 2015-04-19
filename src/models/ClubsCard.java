@@ -3,26 +3,10 @@ package models;
 import utils.Color;
 import utils.Suit;
 
-public class ClubsCard {
-
-	private boolean uncovered;
-	private int value;
-
+public class ClubsCard extends Card{
 
 	public ClubsCard(int value) {
-		this.value = value;
-	}
-
-	public boolean isUncovered() {
-		return uncovered;
-	}
-
-	public void setUncovered(boolean uncovered) {
-		this.uncovered = uncovered;
-	}
-
-	public int getValue() {
-		return value;
+	    super(value);
 	}
 
 	public Suit getSuit() {

@@ -3,27 +3,11 @@ package models;
 import utils.Color;
 import utils.Suit;
 
-public class SpadesCard {
+public class SpadesCard extends Card{
 
-	private boolean uncovered;
-	private int value;
-
-
-	public SpadesCard(int value, int suit) {
-		this.value = value;
+	public SpadesCard(int value) {
+	    super(value);
 	}
-	
-	public boolean isUncovered() {
-        return uncovered;
-    }
-
-    public void setUncovered(boolean uncovered) {
-        this.uncovered = uncovered;
-    }
-
-    public int getValue() {
-        return value;
-    }
 
     public Suit getSuit() {
         return Suit.SPADES;

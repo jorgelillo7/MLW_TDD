@@ -3,14 +3,14 @@ package models;
 import utils.Color;
 import utils.Suit;
 
-public class HeartsCard extends Card{
+public class DiamondsCard extends Card{
 
-	public HeartsCard(int value) {
+	public DiamondsCard(int value) {
 		super(value);
 	}
 
     public Suit getSuit() {
-        return Suit.HEARTS;
+        return Suit.DIAMONDS;
     }
 
     public Color getColor() {
