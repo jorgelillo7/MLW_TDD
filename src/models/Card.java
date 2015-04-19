@@ -31,23 +31,19 @@ public class Card {
 	}
 
 	private Suit getSuit(int suitNum) {
-		Suit newSuit = null;
+	    
 		switch (suitNum) {
-		case 0:
-			newSuit = Suit.SPADES;
-			break;
-		case 1:
-			newSuit = Suit.HEARTS;
-			break;
-		case 2:
-			newSuit = Suit.DIAMONDS;
-			break;
-		case 3:
-			newSuit = Suit.CLUBS;
-			break;
+    		case 0:
+    			return Suit.SPADES;
+    		case 1:
+    			return Suit.HEARTS;
+    		case 2:
+    			return Suit.DIAMONDS;
+    		case 3:
+    			return Suit.CLUBS;
 		}
 
-		return newSuit;
+		return null;
 	}
 
 	public int getValue() {
