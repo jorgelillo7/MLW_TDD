@@ -9,6 +9,7 @@ import models.Card;
 
 public class StartGameController {
 	private static final int TABLEAUS_NUMBER = 7;
+	private static final int DECK_CARDS = 24;
 	public static final int FOUNDATIONS_NUMBER = 4;
 
 	private int sizeDeck;
@@ -18,18 +19,32 @@ public class StartGameController {
 	private ArrayList<Stack<Card>> tableaus;
 
 	public StartGameController() {
-		sizeDeck = 24;
+		this.createTableaus();
+		this.createFoundations();
+		this.createDeck();
+		this.createWaste();
+	}
+
+	private void createWaste() {
+		waste = new Stack<Card>();
+	}
+
+	private void createDeck() {
+		sizeDeck = DECK_CARDS;
+	}
+
+	private void createFoundations() {
 		foundations = new ArrayList<Stack<Card>>(4);
 		for (int i = 0; i < FOUNDATIONS_NUMBER; i++) {
 			foundations.add(new Stack<Card>());
 		}
+	}
 
+	private void createTableaus() {
 		tableaus = new ArrayList<Stack<Card>>(TABLEAUS_NUMBER);
 		for (int i = 0; i < TABLEAUS_NUMBER; i++) {
 			tableaus.add(new Stack<Card>());
 		}
-
-		waste = new Stack<Card>();
 	}
 
 	public int sizeWaste() {
@@ -72,20 +87,10 @@ public class StartGameController {
 
 	public void setSizeDeck(int sizeDeck) {
 		this.sizeDeck = sizeDeck;
-
 	}
 
 	public void addCardToWaste(Card card) {
 		waste.add(card);
-	}
-
-	public void addCardToFundation(int foundationPositionNumber, Card card) {
-		getFoundation(foundationPositionNumber).add(card);
-
-	}
-
-	public Stack<Card> getFoundation(int foundationPositionNumber) {
-		return foundations.get(foundationPositionNumber);
 	}
 
 	public Card getFirstCardWaste() {
@@ -94,7 +99,14 @@ public class StartGameController {
 
 	public void removeWasteCard() {
 		waste.pop();
+	}
 
+	public void addCardToFundation(int foundationPositionNumber, Card card) {
+		getFoundation(foundationPositionNumber).add(card);
+	}
+
+	public Stack<Card> getFoundation(int foundationPositionNumber) {
+		return foundations.get(foundationPositionNumber);
 	}
 
 	public Stack<Card> getTableau(int tableauNumber) {
@@ -107,7 +119,6 @@ public class StartGameController {
 
 	public void removeTableauCard(int tableauNumber) {
 		this.getTableau(tableauNumber).pop();
-
 	}
 
 	public boolean checkWin() {
@@ -119,7 +130,7 @@ public class StartGameController {
 			for (int j = 0; j < 12; j++) {
 				Suit foundationSuit = null;
 				Card card = foundation.get(j);
-				if (card.getValue() == (j+1)) {
+				if (card.getValue() == (j + 1)) {
 					foundationSuit = card.getSuit();
 					if (i > 1) {
 						if (card.getSuit() == foundationSuit) {
@@ -131,8 +142,8 @@ public class StartGameController {
 				}
 			}
 		}
-		
-		if(win && !error){
+
+		if (win && !error) {
 			return true;
 		} else {
 			return false;
