@@ -1,7 +1,7 @@
-# MLW_TDD
+# Metodologías Web Ligeras, desarrollo dirigido por pruebas TDD
 MLW: Jorge Lillo Cobacho y Francisco Maestre Torreblanca
 
-Solitario:
+Juego Klondike:
 Historias usuario:
 -	Jugador quiere empezar una partida
 En el tableu n-ésimo hay n cartas, n-1 cubiertas y la cima destapada siendo diferentes y aleatorias
